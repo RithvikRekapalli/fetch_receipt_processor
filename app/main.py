@@ -8,3 +8,7 @@ app = FastAPI(
 )
 
 app.include_router(router)
+
+@app.get("/", include_in_schema=False)
+async def root():
+    return {"message": "Receipt-Processor API. See /docs for usage."}

@@ -4,6 +4,7 @@ from math import ceil
 import re
 from typing import List
 from app.models.entities import Receipt
+from fastapi import HTTPException
 
 class ScoringRule(ABC):
     """Abstract base class for scoring rules."""
@@ -43,8 +44,12 @@ class DayOddRule(ScoringRule):
 
 class AfternoonRule(ScoringRule):
     def apply(self, receipt: Receipt) -> int:
-        t = datetime.strptime(receipt.purchase_time, '%H:%M').time()
+        try:
+            t = datetime.strptime(receipt.purchase_time, "%H:%M").time()
+        except ValueError:
+            raise HTTPException(status_code=422, detail="Invalid purchaseTime")
         return 10 if time(14, 0) < t < time(16, 0) else 0
+
 
 def default_rules() -> List[ScoringRule]:
     return [

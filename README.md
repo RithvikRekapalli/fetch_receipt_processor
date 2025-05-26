@@ -51,3 +51,5 @@ pytest
 - **ReceiptProcessor** aggregates rules, enabling easy extension/testing.
 - **In‑memory store** isolate persistence layer behind `ReceiptStore`.
 - **Fully typed** (PEP‑604) and lint‑ready (flake8, isort recommended).
+
+File scripts/smoke.sh does end-to-end test against Docker.

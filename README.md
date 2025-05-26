@@ -1,10 +1,10 @@
 # Fetch Rewards – Receipt Processor API
 
 ## Overview
-A high‑performance FastAPI service that awards points to receipts per the rules
-defined in the Fetch backend challenge.  
-Designed with **clean architecture**, **OOP/SOLID** principles, and full
-typing for maintainability and speed.
+A high-performance **FastAPI** service that awards points to receipts according to the rules in the Fetch backend challenge.  
+Built with **clean architecture**, **OOP / SOLID** principles, and full typing for maintainability and speed.
+
+---
 
 ## Quick Start
 
@@ -14,19 +14,31 @@ docker build -t receipt-api .
 docker run -p 8000:8000 receipt-api
 ```
 
-Visit `http://localhost:8000/docs` for interactive Swagger UI.
+## Quick Health Check
+Once the container is running, verify the API with a single cURL:
+
+```bash
+curl http://localhost:8000/
+# ➜ {"message":"Receipt-Processor API up and running. Visit /docs for Swagger UI."}
+```
+
+If you see that JSON response, the service is healthy.
+Open <http://localhost:8000/docs> for the full interactive Swagger UI.
+
 
 ## Project Structure
+
 ```
 app/
 ├── api/          # REST endpoints
 ├── core/         # Scoring rules & processor (domain logic)
 ├── models/       # Pydantic schemas & dataclass entities
-└── services/     # In‑memory store abstraction
+└── services/     # In-memory store abstraction
 tests/            # Pytest unit tests
 ```
 
 ## Running Tests
+
 ```bash
 pip install -r requirements.txt
 pytest

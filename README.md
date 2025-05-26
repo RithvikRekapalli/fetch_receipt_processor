@@ -34,8 +34,17 @@ app/
 ├── core/         # Scoring rules & processor (domain logic)
 ├── models/       # Pydantic schemas & dataclass entities
 └── services/     # In-memory store abstraction
+scripts/         # smoke.sh (e2e)
 tests/            # Pytest unit tests
 ```
+
+## Local Dev (without Docker)
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+Now browse to localhost:8000/docs.
 
 ## Running Tests
 
